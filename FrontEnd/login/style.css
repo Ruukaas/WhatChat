@@ -1,13 +1,8 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-}
+@import "./../public/css/global.css";
 
 body
 {
-  background-color: #d1d8e0;
+  background-color: var(--twinkle-blue);
   width: 100vw;
   height: 100vh;
 }
@@ -15,7 +10,7 @@ body
 header {
   height: 4.25rem;
   width: 100%;
-  background-color: #26de81;
+  background-color: var(--reptile-green);
   
   display: flex;
   justify-content: center;
@@ -23,7 +18,7 @@ header {
 }
 
   header h2 {
-    color: #f7f1e3;
+    color: var(--swan-white);
   }
 
 div.page-wrapper
@@ -41,11 +36,11 @@ div.page-wrapper
     height: 70%;
 
     margin-top: 2.5rem;
-    background-color: #f7f1e3;
+    background-color: var(--swan-white);
     border: 1px solid transparent;
     border-radius: 5px;
 
-    box-shadow: 2.5px 2.5px 5px #4b6584;
+    box-shadow: 2.5px 2.5px 5px var(--blue-horizon);
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -70,14 +65,14 @@ div.page-wrapper
     }
 
       div.login-area h3 {
-        color: #2c3e50;
+        color: var(--midnight-blue);
       }
       
       div.login-area input#login-username {
         margin-top: 1rem;
         width: 225px;
         padding: 8px 4px;
-        border: 1px solid #4b6584;
+        border: 1px solid var(--blue-horizon);
         border-radius: 5px;
       }
 
@@ -85,7 +80,7 @@ div.page-wrapper
         margin-top: 0.5rem;
         width: 225px;
         padding: 8px 4px;
-        border: 1px solid #4b6584;
+        border: 1px solid var(--blue-horizon);
         border-radius: 5px;
       }
 
@@ -93,8 +88,8 @@ div.page-wrapper
         margin-top: 0.5rem;
         width: 225px;
         padding: 8px 4px;
-        background-color: #26de81;
-        color: #f7f1e3;
+        background-color: var(--reptile-green);
+        color: var(--swan-white);
         border: 1px solid transparent;
         border-radius: 5px;
         cursor: pointer;
@@ -102,7 +97,7 @@ div.page-wrapper
       }
 
       div.login-area button#login-button:hover {
-        background-color: #20bf6b;
+        background-color: var(--algal-fuel);
       }
 
       div.login-area p {
@@ -110,6 +105,6 @@ div.page-wrapper
       }
       
         p a {
-          color: #2c3e50;
+          color: var(--midnight-blue);
           text-decoration: none;
         }
