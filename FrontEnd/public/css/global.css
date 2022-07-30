@@ -1,3 +1,5 @@
+@import "./fonts.css";
+
 :root {
   --twinkle-blue: #d1d8e0;
   --reptile-green: #26de81;
@@ -11,5 +13,5 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Oswald';
 }
