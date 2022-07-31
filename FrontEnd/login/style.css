@@ -5,6 +5,9 @@ body
   background-color: var(--twinkle-blue);
   width: 100vw;
   height: 100vh;
+
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -23,8 +26,8 @@ header {
 
 div.page-wrapper
 {
+  flex: 1;
   width: 100%;
-  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -115,3 +118,33 @@ div.page-wrapper
         p a:hover {
           text-decoration: underline;
         }
+
+@media (max-width: 768px) {
+  div.page-wrapper div.login-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  div.login-wrapper div.logo-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  div.page-wrapper div.login-wrapper {
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  div.login-area input#login-username {
+    width: 85%;
+  }
+
+  div.login-area input#login-password {
+    width: 85%;
+  }
+
+  div.login-area button#login-button {
+    width: 85%;
+  }
+}
