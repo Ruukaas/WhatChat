@@ -135,15 +135,15 @@ div.page-wrapper
     grid-template-columns: 1fr;
   }
 
-  div.login-area input#login-username {
+  form input#login-username {
     width: 225px;
   }
 
-  div.login-area input#login-password {
+  form input#login-password {
     width: 225px;
   }
 
-  div.login-area button#login-button {
+  form input#login-button {
     width: 225px;
   }
 }
