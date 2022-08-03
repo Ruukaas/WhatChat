@@ -21,7 +21,7 @@ header {
 }
 
   header h2 {
-    color: var(--swan-white);
+    color: var(--clouds);
   }
 
 div.page-wrapper
@@ -39,7 +39,7 @@ div.page-wrapper
     height: 100%;
     margin-top: 0;
 
-    background-color: var(--swan-white);
+    background-color: var(--clouds);
     border: 1px solid transparent;
     border-radius: 5px;
 
@@ -102,7 +102,7 @@ div.page-wrapper
           width: 85%;
           padding: 8px 4px;
           background-color: var(--reptile-green);
-          color: var(--swan-white);
+          color: var(--clouds);
           border: 1px solid transparent;
           border-radius: 5px;
           cursor: pointer;
