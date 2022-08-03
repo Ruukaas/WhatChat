@@ -140,10 +140,10 @@ div.page-wrapper
   }
 }
 
-/* @media (max-width: 425px) { */
 @media (min-width: 768px) {
   div.page-wrapper div.login-wrapper {
     grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
   }
 
   div.login-wrapper div.logo-wrapper {
