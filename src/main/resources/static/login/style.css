@@ -57,7 +57,7 @@ div.page-wrapper
       align-items: center;
     }
 
-      div.login-area h2 {
+      div.login-area h3 {
         color: var(--midnight-blue);
       }
 
