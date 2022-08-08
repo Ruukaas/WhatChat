@@ -1,0 +1,118 @@
+@import "./../public/css/global.css";
+
+header {
+  height: 4.25rem;
+  width: 100%;
+  background-color: var(--reptile-green);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  h2 a {
+    text-decoration: none;
+    color: var(--clouds);
+  }
+
+div.page-wrapper {
+  flex: 1;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+  div.page-wrapper div.registration-page {
+    
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+    /* max-width: 1000px; */
+
+    background-color: var(--clouds);
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    box-shadow: 2.5px 2.5px 5px var(--blue-horizon);
+
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+    div.registration-page div.logo-wrapper {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+      div.logo-wrapper img {
+        width: 250px;
+      }
+    
+    div.registration-page div.form-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+      div.form-area h3 {
+        margin-top: 1.5rem;
+        color: var(--midnight-blue);
+      }
+    
+      div.form-area form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+        form input {
+          margin-top: 1rem;
+          width: 85%;
+          font-size: 0.90rem;
+          padding: 8px 4px;
+          border: 1px solid var(--blue-horizon);
+          border-radius: 5px;
+        }
+
+        form input#signup-button {
+          background-color: var(--reptile-green);
+          color: var(--clouds);
+          border: 1px solid transparent;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+          form input#signup-button:hover {
+            background-color: var(--algal-fuel);
+          }
+
+@media (min-width: 425px) {
+  div.page-wrapper div.registration-page {
+    width: 70%;
+    height: 70%;
+    margin-top: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  form input {
+    width: 225px;
+  }
+}
+
+@media (min-width: 768px) {
+  div.page-wrapper div.registration-page {
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+  }
+
+  div.registration-page div.logo-wrapper {
+    display: flex;
+  }
+}
