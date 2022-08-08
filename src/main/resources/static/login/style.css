@@ -1,15 +1,5 @@
 @import "./../public/css/global.css";
 
-body
-{
-  background-color: var(--twinkle-blue);
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-}
-
 header {
   height: 4.25rem;
   width: 100%;
