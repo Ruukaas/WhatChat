@@ -14,7 +14,7 @@ public class usuarioController {
 
     @RequestMapping("/cadastro")
     public String telaCadastro() {
-        return "login/cadastro.html";
+        return "cadastro/cadastro.html";
     }
 
     @RequestMapping("/esquecerSenha")
