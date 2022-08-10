@@ -19,6 +19,14 @@ const logar = (form) => {
     return response;
 }
 
+const cadastrar = (form) => {
+    let response
+    fetch(form.action, {method:"post",body:new FormData(form)}).then(responseEntity => {
+        response = responseEntity;
+      });
+    return response;
+}
+
 
 
 
