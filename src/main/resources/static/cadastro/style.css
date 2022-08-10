@@ -11,12 +11,11 @@ header {
 }
 
   h2 a {
-    color: var(--clouds);
     text-decoration: none;
+    color: var(--clouds);
   }
 
-div.page-wrapper
-{
+div.page-wrapper {
   flex: 1;
   width: 100%;
 
@@ -25,10 +24,12 @@ div.page-wrapper
   align-items: center;
 }
 
-  div.page-wrapper div.login-wrapper {
+  div.page-wrapper div.registration-page {
+    
+    margin-top: 0;
     width: 100%;
     height: 100%;
-    margin-top: 0;
+    /* max-width: 1000px; */
 
     background-color: var(--clouds);
     border: 1px solid transparent;
@@ -40,7 +41,7 @@ div.page-wrapper
     grid-template-columns: 1fr;
   }
 
-    div.login-wrapper div.logo-wrapper {
+    div.registration-page div.logo-wrapper {
       display: none;
       flex-direction: column;
       justify-content: center;
@@ -51,101 +52,67 @@ div.page-wrapper
         width: 250px;
       }
     
-    div.login-wrapper div.login-area {
+    div.registration-page div.form-area {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
-      div.login-area h3 {
+      div.form-area h3 {
+        margin-top: 1.5rem;
         color: var(--midnight-blue);
       }
-
-      div.login-area form {
+    
+      div.form-area form {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
       }
-      
-        form input#login-username {
-          font-size: 0.90rem;
+
+        form input {
           margin-top: 1rem;
           width: 85%;
-          padding: 8px 4px;
-          border: 1px solid var(--blue-horizon);
-          border-radius: 5px;
-        }
-
-        form input#login-password {
           font-size: 0.90rem;
-          margin-top: 0.5rem;
-          width: 85%;
           padding: 8px 4px;
           border: 1px solid var(--blue-horizon);
           border-radius: 5px;
         }
 
-        form input#login-button {
-          font-size: 1rem;
-          margin-top: 0.5rem;
-          width: 85%;
-          padding: 8px 4px;
+        form input#signup-button {
           background-color: var(--reptile-green);
           color: var(--clouds);
           border: 1px solid transparent;
           border-radius: 5px;
           cursor: pointer;
-          margin-bottom: 1rem;
         }
 
-        form input#login-button:hover {
-          background-color: var(--algal-fuel);
-        }
-
-      div.login-area p {
-        margin-bottom: 0.25rem;
-      }
-      
-        p a {
-          color: var(--midnight-blue);
-          text-decoration: none;
-        }
-
-        p a:hover {
-          text-decoration: underline;
-        }
+          form input#signup-button:hover {
+            background-color: var(--algal-fuel);
+          }
 
 @media (min-width: 425px) {
-  div.page-wrapper div.login-wrapper {
+  div.page-wrapper div.registration-page {
     width: 70%;
     height: 70%;
     margin-top: 2.5rem;
     grid-template-columns: 1fr;
   }
 
-  form input#login-username {
-    width: 225px;
-  }
-
-  form input#login-password {
-    width: 225px;
-  }
-
-  form input#login-button {
+  form input {
     width: 225px;
   }
 }
 
 @media (min-width: 768px) {
-  div.page-wrapper div.login-wrapper {
+  div.page-wrapper div.registration-page {
     grid-template-columns: 1fr 1fr;
     max-width: 1000px;
   }
 
-  div.login-wrapper div.logo-wrapper {
+  div.registration-page div.logo-wrapper {
     display: flex;
   }
 }

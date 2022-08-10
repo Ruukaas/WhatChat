@@ -15,3 +15,13 @@
   box-sizing: border-box;
   font-family: 'Oswald';
 }
+
+body
+{
+  background-color: var(--twinkle-blue);
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}

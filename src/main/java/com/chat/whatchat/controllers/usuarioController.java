@@ -18,14 +18,11 @@ public class usuarioController {
         return "login/teste.html";
     }
 
+    
+
     @RequestMapping("/cadastro")
     public String telaCadastro() {
-        return "login/cadastro.html";
+        return "cadastro/cadastro.html";
     }
-
-    @RequestMapping("/esquecerSenha")
-    public String telaEsqueceuSenha() {
-        return "login/esquecerSenha.html";
-    }
-
+    
 }

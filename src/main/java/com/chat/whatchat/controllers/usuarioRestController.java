@@ -22,7 +22,7 @@ import com.chat.whatchat.repository.usuarioRepo;
 public class usuarioRestController {
 
     @PostMapping("/cadastro")
-    public ResponseEntity<?> create(@RequestBody usuario usr) {
+    public ResponseEntity<?> create(@ModelAttribute usuario usr) {
 
         usuarioRepo.getCurrentInstance().create(usr);
         return new ResponseEntity<>(HttpStatus.OK);

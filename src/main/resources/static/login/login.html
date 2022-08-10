@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="icon" href="./../public/images/group.ico" >
-    <link rel="stylesheet" href="./../login/style.css" >
+    <link rel="stylesheet" href="login/style.css" >
 
     <title>WhatChat - Login</title>
   </head>
   <body>
 
     <header>
-      <h2>WhatChat</h2>
+      <h2><a href="/" >WhatChat</a></h2>
     </header>
 
     <div class="page-wrapper">
 
       <div class="login-wrapper">
         <div class="logo-wrapper">
-          <img src="./../public/images/group.png" title="WhatChat Logo" >
+          <img src="/public/images/group.png" title="WhatChat Logo" >
         </div>
         
         <div class="login-area">
-          <h2>Login</h2>
+          <h3>Login</h3>
           <form action="/logar" id="form">
-            <input id="login-username" type="text" placeholder="Username" name="email">
+            <input id="login-username" type="text" placeholder="Username" name="email" >
             <input id="login-password" type="password" placeholder="Password" name="senha" >
             <input id="login-button" type="button" value="Fazer Login" >
           </form>
@@ -46,14 +46,19 @@
         fetch(form.action, {method:"post",body:new FormData(form)}).then(response => response.json()).then(data => {
           if(data.status == 500) {
             alert("Deu b.o")
+            // window.location.href="/";
           } else {
-            console.log(data)
+
+            alert("deu bom")
             sessionStorage.setItem("id",data);
-            window.location.href="/logado";
+            // window.location.href="/";
           }
+        }).catch(function(erro){
+          alert(erro);
         })
       })
     </script>
-    
   </body>
+
+
 </html>
