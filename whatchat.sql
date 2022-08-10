@@ -4,7 +4,7 @@ USE Whatchat;
 
 CREATE TABLE IF NOT EXISTS Usuarios
 (
-  Identificador int,
+  Identificador int auto_increment,
   Nome varchar(50),
   Email varchar(50),
   Usertag varchar(25),
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS UsuarioContato
 
 CREATE TABLE IF NOT EXISTS Mensagens
 (
-  Identificador int,
+  Identificador int auto_increment,
   UsuarioAutorId int,
   UsuarioReceptorId int,
   MensagemHorario datetime,
