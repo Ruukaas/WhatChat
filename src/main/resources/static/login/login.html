@@ -25,6 +25,7 @@
         
         <div class="login-area">
           <h3>Login</h3>
+          <p id="error" hidden="true">Usuário ou senha incorretos</p>
           <form action="/logar" id="form">
             <input id="login-username" type="text" placeholder="Username" name="email" >
             <input id="login-password" type="password" placeholder="Password" name="senha" >
@@ -45,7 +46,7 @@
       btnLogin.addEventListener("click", function() {
         fetch(form.action, {method:"post",body:new FormData(form)}).then(response => response.json()).then(data => {
           if(data.status == 500) {
-            alert("Deu b.o")
+            alert("")
             // window.location.href="/";
           } else {
 
