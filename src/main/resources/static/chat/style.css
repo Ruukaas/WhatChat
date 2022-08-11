@@ -1,0 +1,94 @@
+@import "./../public/css/global.css";
+
+body {
+  overflow: hidden;
+}
+
+header {
+  height: 4.25rem;
+  width: 100%;
+  background-color: var(--clouds);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+  div.contact-info {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
+    img.avatar-icon {
+      height: 50px;
+    }
+
+    div.contact-container {
+      margin-left: 1rem;
+    }
+
+      p.contact-name {
+        color: var(--reptile-green);
+      }
+
+  button.back-button {
+    height: 100%;
+    width: 75px;
+    border: 0;
+    color: var(--reptile-green);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.5s ease;
+  }
+
+  button.back-button:hover {
+    background-color: var(--reptile-green);
+    color: var(--clouds);
+  }
+
+div.chat-area {
+  width: 100%;
+  flex: 15;
+}
+
+div.input-container {
+  width: 100%;
+  height: 2rem;
+  flex: 1;
+  background-color: var(--clouds);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border: 1px solid var(--blue-horizon);
+}
+
+  div.input-container input.message-input {
+    flex: 19;
+    font-size: 100%;
+    padding: 8px 4px;
+    background-color: var(--clouds);
+
+    border: 0;
+  }
+
+  div.input-container input.message-input:focus {
+    outline: 0;
+  }
+
+  div.input-container:focus-within {
+    border: 2px solid var(--blue-horizon);
+  }
+
+  div.input-container button.message-sender {
+    flex: 1;
+    background-color: var(--clouds);
+    cursor: pointer;
+
+    border: 0;
+  }
+
+    button.message-sender img.send-icon {
+      height: 80%;
+    }
