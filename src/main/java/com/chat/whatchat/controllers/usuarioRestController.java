@@ -49,6 +49,7 @@ public class usuarioRestController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
         } catch (SQLException e) {
+            System.out.println(e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -62,6 +63,18 @@ public class usuarioRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/usuario/{field}/{column}")
+    public ResponseEntity<?> read(@PathVariable("field") String field, @PathVariable("column") String column) {
+        try {
+            System.out.println("Entrou");
+            return new ResponseEntity<usuario>(usuarioRepo.getCurrentInstance().read(field, column), HttpStatus.OK);
+        } catch (SQLException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+
 
     @GetMapping("/usuario")
     public ResponseEntity<List<usuario>> readAll() {

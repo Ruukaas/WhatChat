@@ -3,6 +3,19 @@
 body {
   overflow: hidden;
 }
+/* Lucas Henrique fazendo b.o */
+
+.msgIdSender {
+  text-align: end;
+  margin-right: 20px;
+}
+
+.msgIdReceiver {
+  text-align: start;
+  margin-left: 20px;
+}
+
+/* Lucas Henrique fazendo b.o */
 
 header {
   height: 4.25rem;
@@ -92,3 +105,4 @@ div.input-container {
     button.message-sender img.send-icon {
       height: 80%;
     }
+

@@ -1,37 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="./../public/images/group.ico" >
-    <link rel="stylesheet" href="chat/style.css" >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WhatChat</title>
-  </head>
-  <body>
-    
-    <header>
-      <div class="contact-info">
-        <img src="./../public/images/avatar.png" class="avatar-icon" >
-        <div class="contact-container" >
-          <p class="contact-name" >Miguel Costa Souza</p>
-          <p class="contact-email" >MiguelCostaSouza@jourrapide.com</p>
-        </div>
+  <link rel="icon" href="./../public/images/group.ico">
+  <link rel="stylesheet" href="chat/style.css">
+
+  <title>WhatChat</title>
+</head>
+
+<body>
+
+  <header>
+    <div class="contact-info">
+      <img src="./../public/images/avatar.png" class="avatar-icon">
+      <div class="contact-container">
+        <p class="contact-name">Miguel Costa Souza</p>
+        <p class="contact-email">MiguelCostaSouza@jourrapide.com</p>
       </div>
-
-      <button class="back-button" >Voltar</button>
-    </header>
-
-    <div class="chat-area">
-
     </div>
 
-    <div class="input-container">
-      <input type="text" class="message-input" >
-      <button class="message-sender" ><img src="./../public/images/send-icon.png" class="send-icon" ></button>
-    </div>
+    <button class="back-button">Voltar</button>
+  </header>
 
-  </body>
+  <div class="chat-area">
+
+  </div>
+
+  <div class="input-container">
+    <form action="" id="form">
+      
+      <input type="hidden" name="idSender" id="idSender">
+      <input type="hidden" name="idReceiver" id="idReceiver">
+      <input type="text" class="message-input" name="mensagem">
+      <button class="message-sender"><img src="./../public/images/send-icon.png" class="send-icon"></button>
+    </form>
+  </div>
+
+  <script>
+
+
+
+    let btn = document.getElementsByClassName("message-sender")[0]
+    let form = document.getElementById("form");
+
+    let chat = document.getElementsByClassName("chat-area")[0];
+
+    let idSender = sessionStorage.getItem("id")
+    let idReceiver = sessionStorage.getItem("idChat")
+
+    console.log(idSender)
+    console.log(idReceiver)
+
+
+    const fetchMensagens = () => {
+      fetch(`http://localhost:8080/mensagem/${idSender}/${idReceiver}`, { method: "get" })
+        .then((response) => response.json()).then(data => {
+          console.log(data)
+          chat.innerHTML = ""
+          data.forEach(valor => {
+            let p = document.createElement("p");
+            if (valor.idSender == idSender) {
+              p.classList.add("msgIdSender");
+            } else {
+              p.classList.add("msgIdReceiver");
+            }
+            p.innerHTML = valor.mensagem
+            console.log(p)
+            chat.appendChild(p);
+          })
+        })
+
+
+    }
+
+    window.addEventListener("load", function () {
+      let pNome = document.getElementsByClassName("contact-name")[0]
+      let pEmail = document.getElementsByClassName("contact-email")[0]
+
+      let inputSender = document.getElementById("idSender");
+      let inputReceiver = document.getElementById("idReceiver");
+
+      inputSender.setAttribute("value",idSender)
+      inputReceiver.setAttribute("value", idReceiver)
+
+      fetch(`http://localhost:8080/usuario/${idReceiver}`, { method: "get" }).then(response => response.json())
+        .then(data => {
+          pNome.innerHTML = data.nome;
+          pEmail.innerHTML = data.email;
+        })
+
+      fetchMensagens()
+    })
+
+    btn.addEventListener("click", function (target) {
+      target.preventDefault()
+      console.log(new FormData(form))
+      fetch("http://localhost:8080/mensagem", { method: "POST", body: new FormData(form) })
+        .then(response => {
+          console.log(response.status)
+          return response.status;
+        }).then((response) => {
+          if (response == 200) {
+            fetchMensagens();
+          }
+        })
+    })
+
+    document.getElementsByClassName("back-button")[0].addEventListener("click", function () {
+      sessionStorage.removeItem("idChat");
+      window.location.href = "/whatchat"
+    })
+  </script>
+</body>
+
 </html>

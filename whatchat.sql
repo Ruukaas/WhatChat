@@ -27,7 +27,7 @@ create table mensagens(
     idReceiver bigint,
     primary key(ID)
 );
-
+select * from mensagens where idSender = 1 and idReceiver = 2 or idSender = 2 and idReceiver = 1 order by send ASC;
 select * from usuarioContato;
 select * from mensagens;
 select * from usuarios;

@@ -27,7 +27,7 @@ public class contatosRepo {
     }
 
     public void create(long idDono, long idContato) throws SQLException{
-        String sql = "insert into usuarioContato(donoID, contatoID) values ?,?";
+        String sql = "insert into usuarioContato(donoID, contatoID) values (?,?)";
 
         try {
             PreparedStatement pstm = ConnectionDB.getCurrentConnection().prepareStatement(sql);

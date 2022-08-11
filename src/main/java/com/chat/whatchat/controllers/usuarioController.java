@@ -15,7 +15,7 @@ public class usuarioController {
 
     @RequestMapping("/logado")
     public String telaWhatChat() {
-        return "chat/chat.html";
+        return "home/home.html";
     }
 
     @RequestMapping("/cadastro")

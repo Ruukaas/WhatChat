@@ -67,13 +67,16 @@ public class mensagemRepo {
 
 
     public List<mensagem> readChat(long idSender, long idReceiver) throws SQLException {
-        String sql = "select * from mensagens where idSender = ? and idReceiver = ?";
+        String sql = "select * from mensagens where idSender = ? and idReceiver = ? or idSender = ? and idReceiver = ? order by send ASC";
         List<mensagem> mensagens = new ArrayList<mensagem>();
 
         try {
             PreparedStatement pstm = ConnectionDB.getCurrentConnection().prepareStatement(sql);
             pstm.setLong(1, idSender);
             pstm.setLong(2, idReceiver);
+            pstm.setLong(3, idReceiver);
+            pstm.setLong(4, idSender);
+            System.out.println(pstm);
 
             ResultSet result = pstm.executeQuery();
 

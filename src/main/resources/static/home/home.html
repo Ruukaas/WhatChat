@@ -1,57 +1,170 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="./../public/images/group.ico" >
-    <link rel="stylesheet" href="home/style.css" >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WhatChat</title>
-  </head>
-  <body>
+  <link rel="icon" href="./../public/images/group.ico">
+  <link rel="stylesheet" href="home/style.css">
 
-    <header>
-      <h2><a>WhatChat</a></h2>
-    </header>
+  <title>WhatChat</title>
+</head>
 
-    <div class="whatchat-container" >
-      <div class="author-container" >
-        <div class="author-header">
-          <img src="./../public/images/avatar.png" id="avatar" >
-        </div>
+<body>
 
-        <p class="author-info" >Nome: Emilly Martins Gomes</p>
-        <p class="author-info" >E-Mail: EmillyMartinsGomes@teleworm.us</p>
-        <p class="author-info" >UserTag: Tope1940</p>
+  <header>
+    <h2><a>WhatChat</a></h2>
+  </header>
+
+  <div class="whatchat-container">
+    <div class="author-container">
+      <div class="author-header">
+        <img src="./../public/images/avatar.png" id="avatar">
       </div>
 
-      <div class="contacts-container" >
-        <h4>Lista de Contatos</h4>
+      <p class="author-info" id="name">Nome: </p>
+      <p class="author-info" id="email">E-Mail: </p>
+      <p class="author-info" id="usertag">UserTag: </p>
+      <p class="author-info" id="id" hidden="hidden"></p>
 
-        <ul class="contact-list" >
-          <li class="contact" >
-            <a href="#" >
-              <img src="./../public/images/avatar.png" alt="avatar do contato" >
-              <p class="contact-name" >Rectee</p>
-            </a>
-          </li>
-          <li class="contact" >
-            <a href="#" >
-              <img src="./../public/images/avatar.png" alt="avatar do contato" >
-              <p class="contact-name" >Himseepenst</p>
-            </a>
-          </li>
-          <li class="contact" >
-            <a href="#" >
-              <img src="./../public/images/avatar.png" alt="avatar do contato" >
-              <p class="contact-name" >Saidecalown</p>
-            </a>
-          </li>
-        </ul>
+      <div class="search">
+        
+          <input type="text" name="" id="searchUserTag" placeholder="Pesquisar nome de usuário">
+          <input type="button" value="Pesquisar" id="pesquisar">
+
+          
+        
       </div>
     </div>
+
+    <div class="contacts-container">
+      <h4>Lista de Contatos</h4>
+
+      <ul class="contact-list">
+        <!-- <li class="contact">
+          <a href="#">
+            <img src="./../public/images/avatar.png" alt="avatar do contato">
+            <p class="contact-name">Rectee</p>
+          </a>
+        </li>
+        <li class="contact">
+          <a href="#">
+            <img src="./../public/images/avatar.png" alt="avatar do contato">
+            <p class="contact-name">Himseepenst</p>
+          </a>
+        </li>
+        <li class="contact">
+          <a href="#">
+            <img src="./../public/images/avatar.png" alt="avatar do contato">
+            <p class="contact-name">Saidecalown</p>
+          </a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const readMensagens = (idSender, idReceiver) => {
+
+      let mensagens;
+
+      fetch(`http://localhost:8080/mensagem/${idSender}/${idReceiver} `, { method: "get" }).then(response => response.json()).then(data => mensagens = data)
+
+      return mensagens;
+    }
+
+    const addContato = (idContato) => {
+      console.log()
+      fetch(`http://localhost:8080/contato/${sessionStorage.getItem("id")}/${idContato}`,{method:"post"}).then(response => response.json()).then(data => console.log(data));
+      alert("Contato adicionado com sucesso")
+      document.location.reload();
+    }
+
+    let searchBtn = document.getElementById("pesquisar");
     
-  </body>
+    searchBtn.addEventListener("click", function() {
+        let search = document.getElementById("searchUserTag").value
+        fetch(`http://localhost:8080/usuario/${search}/usertag`, {method:"get"}).then(response => response.json()).then((data) => {
+          console.log(data)
+          if(data.status == 500) {
+            alert("Usertag não encontrada");
+          } else {
+            let div = document.createElement("div");
+            div.classList.add("resulSearch");
+            div.addEventListener("click", function() {
+              addContato(data.id);
+            })
+            let pNome = document.createElement("nome");
+            pNome.innerHTML = data.nome;
+
+            div.appendChild(pNome)
+            document.getElementsByClassName("search")[0].appendChild(div);
+          }
+        })
+    })
+
+
+    let usuario;
+    let usrName = document.getElementById("name");
+    let usrEmail = document.getElementById("email");
+    let usrUsertag = document.getElementById("usertag");
+    let listContato = document.getElementsByClassName("contact-list")[0]
+    fetch(`http://localhost:8080/usuario/${sessionStorage.getItem("id")}`, { method: "GET" })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        usuario = data;
+      }).then(() => {
+        usrName.innerHTML += usuario.nome;
+        usrEmail.innerHTML += usuario.email;
+        usrUsertag.innerHTML += usuario.usertag;
+      }).then(() => {
+
+        usuario.contatos.forEach(valor => {
+          let li = document.createElement("li");
+          li.classList.add("contact");
+
+          let a = document.createElement("a");
+          a.classList.add("toChat")
+
+          let img = document.createElement("img");
+          img.setAttribute("src", "./../public/images/avatar.png");
+          img.setAttribute("alt", "avatar do contato");
+
+          let id = document.createElement("p");
+          console.log(id);
+          id.setAttribute("hidden", "hidden");
+          id.classList.add("id");
+          id.innerHTML = valor.id;
+
+          let p = document.createElement("p");
+          p.classList.add("contact-name")
+          p.innerHTML = valor.nome;
+
+          a.appendChild(img);
+          a.appendChild(p);
+          a.appendChild(id)
+          li.appendChild(a);
+
+          listContato.appendChild(li);
+        })
+      }).then(() => {
+        let contacts = [...document.getElementsByClassName("contact")];
+        console.log(contacts)
+        contacts.forEach((valor) => {
+          valor.addEventListener("click", function () {
+            sessionStorage.setItem("idChat", valor.getElementsByClassName("id")[0].innerHTML);
+            window.location.href = "/chat"
+            
+          })
+        })
+      })
+
+
+
+  </script>
+</body>
+
 </html>
