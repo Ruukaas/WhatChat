@@ -18,8 +18,6 @@ public class usuarioController {
         return "login/teste.html";
     }
 
-    
-
     @RequestMapping("/cadastro")
     public String telaCadastro() {
         return "cadastro/cadastro.html";
@@ -28,6 +26,11 @@ public class usuarioController {
     @RequestMapping("/whatchat")
     public String WhatChat() {
         return "home/home.html";
+    }
+
+    @RequestMapping("/chat")
+    public String telaChat() {
+        return "chat/chat.html";
     }
     
 }
