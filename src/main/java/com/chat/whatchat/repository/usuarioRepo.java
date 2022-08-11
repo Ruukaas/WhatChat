@@ -25,7 +25,7 @@ public class usuarioRepo {
         return myself;
     }
 
-    public void create(usuario usr) {
+    public void create(usuario usr) throws SQLException {
         String sql = "insert into usuarios(nome, email, senha, usertag) values (?,?,?,?)";
 
         try {
@@ -37,15 +37,13 @@ public class usuarioRepo {
             pstm.setString(4, usr.getUsertag());
 
             pstm.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        }catch (ClassNotFoundException ex) {
             Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public void update(usuario usr) {
+    public void update(usuario usr) throws SQLException {
         String sql = "update usuarios set nome = ?, email = ?, senha = ?, usertag = ? where id=?";
 
         try {
@@ -57,14 +55,12 @@ public class usuarioRepo {
             pstm.setLong(5, usr.getId());
 
             pstm.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public usuario read(long id) {
+    public usuario read(long id) throws SQLException {
         String sql = "select * from usuarios where ID=?";
 
         try {
@@ -83,8 +79,6 @@ public class usuarioRepo {
                 return usr;
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -92,7 +86,7 @@ public class usuarioRepo {
         return null;
     }
 
-    public usuario read(String field, String column) {
+    public usuario read(String field, String column) throws SQLException {
         String sql = "select * from usuarios where ";
 
         if (column.equals("email") || column.equals("usertag")) {
@@ -117,8 +111,6 @@ public class usuarioRepo {
                 return usr;
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,7 +119,7 @@ public class usuarioRepo {
 
     }
 
-    public void delete(long id) {
+    public void delete(long id) throws SQLException {
         String sql = "delete from usuarios where ID=?";
 
         try {
@@ -137,15 +129,13 @@ public class usuarioRepo {
             pstm.setLong(1, id);
             pstm.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
-    public List<usuario> readAll() {
+    public List<usuario> readAll() throws SQLException {
         String sql = "select * from usuarios";
 
         List<usuario> usuarios = new ArrayList<usuario>();
@@ -167,8 +157,6 @@ public class usuarioRepo {
                 usuarios.add(usr);
             }
             return usuarios;
-        } catch (SQLException ex) {
-            Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(usuarioRepo.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -26,7 +26,7 @@ public class contatosRepo {
         return myself;
     }
 
-    public void create(long idDono, long idContato) {
+    public void create(long idDono, long idContato) throws SQLException{
         String sql = "insert into usuarioContato(donoID, contatoID) values ?,?";
 
         try {
@@ -36,14 +36,12 @@ public class contatosRepo {
             pstm.setLong(2, idContato);
 
             pstm.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void update(long idDono, long idContato) {
+    public void update(long idDono, long idContato) throws SQLException {
         String sql = "update usuarioContato set donoID = ?, contatoID =? where donoID = ?";
         try {
             PreparedStatement pstm = ConnectionDB.getCurrentConnection().prepareStatement(sql);
@@ -53,14 +51,12 @@ public class contatosRepo {
             pstm.setLong(3, idDono);
 
             pstm.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        }catch (ClassNotFoundException ex) {
             Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public List<usuario> readContatos(long idDono) {
+    public List<usuario> readContatos(long idDono) throws SQLException {
         String sql = "select * from usuarioContato where donoID = ?";
         List<usuario> contatos = new ArrayList<usuario>();
         try {
@@ -78,8 +74,6 @@ public class contatosRepo {
             }
 
             return contatos;
-        }  catch (SQLException ex) {
-            Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,7 +81,7 @@ public class contatosRepo {
         return null;
     }
 
-    public void delete(long idDono, long idContato) {
+    public void delete(long idDono, long idContato) throws SQLException {
         String sql = "delete from usuarioContato where donoID = ? and contatoID = ?";
 
         try {
@@ -97,8 +91,6 @@ public class contatosRepo {
             pstm.setLong(2, idContato);
 
             pstm.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(contatosRepo.class.getName()).log(Level.SEVERE, null, ex);
         }

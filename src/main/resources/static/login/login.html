@@ -46,13 +46,14 @@
       btnLogin.addEventListener("click", function() {
         fetch(form.action, {method:"post",body:new FormData(form)}).then(response => response.json()).then(data => {
           if(data.status == 500) {
-            alert("")
+            alert("Erro interno do servidor")
             // window.location.href="/";
+          }else if(data.status = 400) {
+            alert("Usuario ou senha incorretos");
+            document.location.reload();
           } else {
-
-            alert("deu bom")
             sessionStorage.setItem("id",data);
-            // window.location.href="/";
+            window.location.href="/logado";
           }
         }).catch(function(erro){
           alert(erro);

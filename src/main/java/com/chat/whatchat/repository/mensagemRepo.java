@@ -28,7 +28,7 @@ public class mensagemRepo {
         return myself;
     }
 
-    public void create(mensagem msg) {
+    public void create(mensagem msg) throws SQLException {
         String sql = "insert into mensagens(send, mensagem, idSender, idReceiver) values (?,?,?,?)";
 
         try {
@@ -43,15 +43,13 @@ public class mensagemRepo {
 
             pstm.execute();
 
-        } catch (SQLException ex) {
-            Logger.getLogger(mensagemRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(mensagemRepo.class.getName()).log(Level.SEVERE, null, ex);
 
         }
     }
 
-    public void update(mensagem msg) {
+    public void update(mensagem msg) throws SQLException {
         String sql = "update mensagens set mensagem = ?, idSender = ?, idReceiver = ? where id=?";
 
         try {
@@ -62,15 +60,13 @@ public class mensagemRepo {
             pstm.setLong(4, msg.getId());
 
             pstm.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(mensagemRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(mensagemRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
 
-    public List<mensagem> readChat(long idSender, long idReceiver) {
+    public List<mensagem> readChat(long idSender, long idReceiver) throws SQLException {
         String sql = "select * from mensagens where idSender = ? and idReceiver = ?";
         List<mensagem> mensagens = new ArrayList<mensagem>();
 
@@ -93,8 +89,6 @@ public class mensagemRepo {
 
             return mensagens;
 
-        } catch (SQLException ex) {
-            Logger.getLogger(mensagemRepo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(mensagemRepo.class.getName()).log(Level.SEVERE, null, ex);
         }
