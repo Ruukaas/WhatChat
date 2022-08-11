@@ -1,0 +1,94 @@
+@import "./../public/css/global.css";
+
+header {
+  height: 4.25rem;
+  width: 100%;
+  background-color: var(--reptile-green);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  h2 a {
+    color: var(--clouds);
+    text-decoration: none;
+  }
+
+div.whatchat-container {
+  display: grid;
+  grid-template-columns: 3fr 5fr;
+  flex: 1;
+}
+
+  div.whatchat-container div.author-container {
+    background-color: var(--clouds);
+    border-right: 1px solid hsla(210, 29%, 24%, 0.075);
+
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+    div.author-container div.author-header {
+      margin-bottom: 1rem;
+      
+      width: 100%;
+      background-color: #69c3a3;
+      border: 1px solid transparent;
+      border-radius: 5px;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    div.author-header img {
+      width: 50px;
+      background-color: #69c3a3;
+    }
+
+  div.whatchat-container div.contacts-container {
+    background-color: var(--clouds);
+
+    padding: 10px;
+  }
+
+    div.contacts-container h4 {
+      text-align: center;
+      color: var(--midnight-blue);
+    }
+
+    div.contacts-container ul.contact-list {
+      list-style-type: none;
+    }
+
+    ul.contact-list li.contact {
+
+      border-bottom: 1px solid hsla(210, 29%, 24%, 0.075);
+    }
+
+    li.contact:nth-child(n + 2) {
+      margin-top: 0.5rem;
+    }
+
+    li.contact a {
+      display: flex;
+      flex-direction: row;
+      text-decoration: none;
+    }
+
+    li.contact img {
+      width: 50px;
+      background-color: #69c3a3;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
+    }
+
+    li.contact p.contact-name {
+      color: var(--midnight-blue);
+      margin-left: 1rem;
+      line-height: 50px;
+    }

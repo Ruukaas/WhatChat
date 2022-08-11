@@ -24,5 +24,10 @@ public class usuarioController {
     public String telaCadastro() {
         return "cadastro/cadastro.html";
     }
+
+    @RequestMapping("/whatchat")
+    public String WhatChat() {
+        return "home/home.html";
+    }
     
 }
