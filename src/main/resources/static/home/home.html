@@ -30,12 +30,12 @@
       <p class="author-info" id="id" hidden="hidden"></p>
 
       <div class="search">
-        
-          <input type="text" name="" id="searchUserTag" placeholder="Pesquisar nome de usuário">
-          <input type="button" value="Pesquisar" id="pesquisar">
 
-          
-        
+        <input type="text" name="" id="searchUserTag" placeholder="Pesquisar nome de usuário">
+        <input type="button" value="Pesquisar" id="pesquisar">
+
+
+
       </div>
     </div>
 
@@ -77,35 +77,35 @@
 
     const addContato = (idContato) => {
       console.log()
-      fetch(`http://localhost:8080/contato/${sessionStorage.getItem("id")}/${idContato}`,{method:"post"}).then(response => response.json()).then(data => console.log(data));
+      fetch(`http://localhost:8080/contato/${sessionStorage.getItem("id")}/${idContato}`, { method: "post" }).then(response => response.json()).then(data => console.log(data));
       alert("Contato adicionado com sucesso")
       document.location.reload();
     }
 
     let searchBtn = document.getElementById("pesquisar");
-    
-    searchBtn.addEventListener("click", function() {
-        let search = document.getElementById("searchUserTag").value
-        fetch(`http://localhost:8080/usuario/${search}/usertag`, {method:"get"}).then(response => response.json()).then((data) => {
-          console.log(data)
-          if(data.status == 500) {
-            alert("Usertag não encontrada");
-          } else {
-            let div = document.createElement("div");
-            div.classList.add("resulSearch");
-            div.addEventListener("click", function() {
-              addContato(data.id);
-            })
-            let pNome = document.createElement("nome");
-            pNome.innerHTML = data.nome;
 
-            div.appendChild(pNome)
-            document.getElementsByClassName("search")[0].appendChild(div);
-          }
-        })
+    searchBtn.addEventListener("click", function () {
+      let search = document.getElementById("searchUserTag").value
+      fetch(`http://localhost:8080/usuario/${search}/usertag`, { method: "get" }).then(response => response.json()).then((data) => {
+        console.log(data)
+        if (data.status == 500) {
+          alert("Usertag não encontrada");
+        } else {
+          let div = document.createElement("div");
+          div.classList.add("resulSearch");
+          div.addEventListener("click", function () {
+            addContato(data.id);
+          })
+          let pNome = document.createElement("nome");
+          pNome.innerHTML = data.nome;
+
+          div.appendChild(pNome)
+          document.getElementsByClassName("search")[0].appendChild(div);
+        }
+      })
     })
 
-
+    let contatos;
     let usuario;
     let usrName = document.getElementById("name");
     let usrEmail = document.getElementById("email");
@@ -120,9 +120,13 @@
         usrName.innerHTML += usuario.nome;
         usrEmail.innerHTML += usuario.email;
         usrUsertag.innerHTML += usuario.usertag;
-      }).then(() => {
-
-        usuario.contatos.forEach(valor => {
+      }).then(() => fetch(`http://localhost:8080/contato/${usuario.id}`, { method: "get" }))
+      .then(response => {
+        console.log(`http://localhost:8080/contato/${usuario.id}`)
+          console.log(response)
+          return response.json()
+        }).then((contatosx) => {
+        contatosx.forEach(valor => {
           let li = document.createElement("li");
           li.classList.add("contact");
 
@@ -150,14 +154,17 @@
 
           listContato.appendChild(li);
         })
-      }).then(() => {
+      })
+
+
+      .then(() => {
         let contacts = [...document.getElementsByClassName("contact")];
         console.log(contacts)
         contacts.forEach((valor) => {
           valor.addEventListener("click", function () {
             sessionStorage.setItem("idChat", valor.getElementsByClassName("id")[0].innerHTML);
             window.location.href = "/chat"
-            
+
           })
         })
       })

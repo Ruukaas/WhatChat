@@ -75,7 +75,7 @@ public class usuarioRepo {
                 usr.setEmail(result.getString("email"));
                 usr.setSenha(result.getString("senha"));
                 usr.setUsertag(result.getString("usertag"));
-                usr.setContatos(contatosRepo.getCurrentInstance().readContatos(result.getLong("ID")));
+                // // usr.setContatos(contatosRepo.getCurrentInstance().readContatos(result.getLong("ID")));
                 return usr;
             }
 
